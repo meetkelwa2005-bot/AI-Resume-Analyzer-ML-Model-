@@ -1,5 +1,7 @@
 services:
   - type: web
     name: ai-resume-analyzer-api
-    env: docker
+    env: python
+    buildCommand: "pip install -r requirements.txt && python -m spacy download en_core_web_sm && python train.py"
+    startCommand: "uvicorn app:app --host 0.0.0.0 --port $PORT"
     plan: free
